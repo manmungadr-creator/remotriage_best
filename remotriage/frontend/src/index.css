@@ -707,6 +707,10 @@ a:hover { color: var(--medical-blue-600); text-decoration: underline; }
   margin-bottom: 4px;
   color: var(--gray-800);
 }
+.step-content span {
+  color: var(--gray-700);
+  font-size: var(--text-sm);
+}
 
 /* Safety Information */
 .safety-info {
