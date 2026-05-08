@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { triageAPI } from "../services/api";
+import { useAuth } from "../context/AuthContext";
 
 const LEVEL_CONFIG = {
   EMERGENCY: {
@@ -63,6 +64,7 @@ const PREVENTION_TIPS = {
 
 export default function Results() {
   const navigate = useNavigate();
+  const { user, logout } = useAuth();
   const [data, setData] = useState(null);
   const [lang, setLang] = useState("en");
   const [rating, setRating] = useState(0);
@@ -122,6 +124,9 @@ export default function Results() {
           <button className="btn btn--ghost" onClick={() => setLang(lang === "en" ? "sw" : "en")}>
             {lang === "en" ? "SW" : "EN"}
           </button>
+          {user && (
+            <button className="btn btn--ghost btn--sm" onClick={() => { logout(); navigate("/"); }}>Sign Out</button>
+          )}
         </div>
       </header>
 
