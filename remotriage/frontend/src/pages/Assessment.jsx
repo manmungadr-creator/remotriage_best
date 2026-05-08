@@ -63,7 +63,7 @@ const ASSESSMENT_STEPS = [
 
 export default function Assessment() {
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const { runAssessment, loading, error } = useTriage();
 
   const [lang, setLang] = useState("en");
@@ -158,7 +158,7 @@ export default function Assessment() {
           <button className="btn btn--ghost" onClick={() => setLang(lang === "en" ? "sw" : "en")}>
             {lang === "en" ? "SW" : "EN"}
           </button>
-          {user && <span className="muted">{user.name}</span>}
+          {user && (<><span style={{ fontSize: "var(--text-sm)", color: "var(--gray-700)" }}>👤 {user.name || user.email}</span><button className="btn btn--ghost btn--sm" onClick={() => { logout(); navigate("/"); }}>Sign Out</button></>)}
         </div>
       </header>
 
